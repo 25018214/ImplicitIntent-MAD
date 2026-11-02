@@ -17,15 +17,118 @@ Latest Version Android Studio
 ```
 /*
 Program to print the text “Implicitintent”.
-Developed by:
-Registeration Number :
+Developed by:AKASH A
+Registeration Number :212225230008
 */
+```
+Main Activity.java
+```
+package com.example.implicity;
+
+import android.os.Bundle;
+import android.content.Intent;
+import android.net.Uri;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Button;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+public class MainActivity extends AppCompatActivity {
+
+    EditText editText;
+    Button button;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        editText = findViewById(R.id.editText);
+        button = findViewById(R.id.btn);
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                String url = editText.getText().toString().trim();
+
+                if (url.isEmpty()) {
+                    Toast.makeText(MainActivity.this,
+                            "Enter a website URL",
+                            Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (!url.startsWith("http://")
+                        && !url.startsWith("https://")) {
+                    url = "https://" + url;
+                }
+
+                Intent intent = new Intent(
+                        Intent.ACTION_VIEW,
+                        Uri.parse(url)
+                );
+
+                startActivity(intent);
+            }
+        });
+    }
+}
+```
+
+activity_main.xml
+```
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:hint="Enter website URL"
+        android:inputType="textUri"
+        android:padding="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.122" />
+
+    <Button
+        android:id="@+id/btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="368dp"
+        android:onClick="search"
+        android:text="Open Website"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
 ```
 
 ## OUTPUT
 
+<img width="1366" height="720" alt="Screenshot 2026-11-02 123808" src="https://github.com/user-attachments/assets/9da7054f-8f70-42c8-8e93-5be7be7fce9e" />
 
+<img width="1366" height="768" alt="Screenshot 2026-11-02 123911" src="https://github.com/user-attachments/assets/9b683ed1-be7f-4051-b53e-9dec53451327" />
 
+<img width="1366" height="768" alt="Screenshot 2026-11-02 123955" src="https://github.com/user-attachments/assets/3dfed0e7-a2c0-4782-a0e9-8386c7d3b543" />
+
+<img width="1366" height="768" alt="Screenshot 2026-11-02 124047" src="https://github.com/user-attachments/assets/713999c6-7527-4acd-bf7b-a8070040f1b3" />
+
+<img width="1366" height="768" alt="Screenshot 2026-11-02 124100" src="https://github.com/user-attachments/assets/6c06a10e-f0bc-4255-9616-69fbbca18331" />
 
 ## RESULT
 Thus a Simple Android Application create a navigate button using Implicit Intent to display the gmail page using Android Studio is developed and executed successfully.
